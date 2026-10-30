@@ -1,0 +1,398 @@
+/* =========================================================
+   style.css — Portofolio Neobrutalism
+   ========================================================= */
+
+/* ---------- 1. VARIABEL WARNA ----------
+   T4: ubah accent-1 sampai accent-4 sesuai selera kamu */
+:root {
+  --bg: #FFF4D6;
+  --paper: #FFFFFF;
+  --ink: #111111;
+
+  --accent-1: #FFC857;   /* amber */
+  --accent-2: #F25F5C;   /* coral  */
+  --accent-3: #4EA5D9;   /* biru   */
+  --accent-4: #7BC8A4;   /* mint   */
+
+  --border: 3px solid var(--ink);
+  --shadow: 6px 6px 0 var(--ink);
+  --shadow-sm: 4px 4px 0 var(--ink);
+}
+
+/* Mode gelap (dipasang lewat JavaScript: data-theme="dark") */
+:root[data-theme="dark"] {
+  --bg: #16161D;
+  --paper: #23232D;
+  --ink: #F4F4F4;
+}
+
+/* ---------- 2. DASAR ---------- */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  transition: background .25s, color .25s;
+}
+
+/* pola titik di belakang halaman */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .12;
+  background-image: radial-gradient(var(--ink) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+h1, h2, h3, h4, h5, h6 { color: inherit; }
+
+header, section { scroll-margin-top: 80px; }
+
+/* ---------- 3. NAVBAR ---------- */
+.nb-nav {
+  background: var(--paper);
+  border-bottom: var(--border);
+}
+.nb-brand {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.5rem;
+  color: var(--ink) !important;
+}
+.nb-brand span {
+  display: inline-block;
+  margin-left: .3rem;
+  padding: 0 .4rem;
+  background: var(--accent-2);
+  color: #111;
+  border: var(--border);
+  transform: rotate(-3deg);
+}
+.nb-nav .nav-link {
+  font-weight: 700;
+  color: var(--ink);
+  padding: .4rem .9rem;
+  border: 3px solid transparent;
+}
+.nb-nav .nav-link:hover {
+  background: var(--accent-1);
+  color: #111;
+  border-color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+.nb-toggler {
+  font-weight: 800;
+  background: var(--accent-1);
+  color: #111;
+  border: var(--border);
+  border-radius: 0;
+  box-shadow: var(--shadow-sm);
+}
+.nb-toggler:focus { box-shadow: var(--shadow-sm); }
+
+
+.nb-btn {
+  --b: var(--paper);
+  --bs-btn-color: #111;
+  --bs-btn-bg: var(--b);
+  --bs-btn-border-color: var(--ink);
+  --bs-btn-hover-color: #111;
+  --bs-btn-hover-bg: var(--b);
+  --bs-btn-hover-border-color: var(--ink);
+  --bs-btn-active-color: #111;
+  --bs-btn-active-bg: var(--b);
+  --bs-btn-active-border-color: var(--ink);
+  --bs-btn-active-shadow: none;
+
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  padding: .65rem 1.2rem;
+  border: var(--border);
+  border-radius: 0;
+  box-shadow: var(--shadow-sm);
+  transition: transform .12s, box-shadow .12s;
+}
+.nb-btn:hover  { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+.nb-btn:active { transform: translate(4px, 4px);   box-shadow: 0 0 0 var(--ink); }
+.nb-btn-sm     { padding: .4rem .9rem; font-size: .85rem; }
+.nb-btn-yellow { --b: var(--accent-1); }
+.nb-btn-pink   { --b: var(--accent-2); }
+.nb-btn-green  { --b: var(--accent-4); }
+
+
+.ticker {
+  overflow: hidden;
+  padding: .45rem 0;
+  background: #111;
+  color: var(--accent-1);
+  border-bottom: var(--border);
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: geser 40s linear infinite;
+}
+.ticker-track span { white-space: pre; }
+@keyframes geser { to { transform: translateX(-50%); } }
+
+
+.nb-tag {
+  display: inline-block;
+  padding: .25rem .7rem;
+  background: var(--accent-3);
+  color: #111;
+  border: var(--border);
+  box-shadow: var(--shadow-sm);
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: .85rem;
+  transform: rotate(-2deg);
+}
+.hero-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 4.5rem;
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin: 1.2rem 0;
+}
+.hero-title .mark {
+  background: var(--accent-1);
+  color: #111;
+  padding: 0 .4rem;
+  box-shadow: 5px 5px 0 var(--ink);
+  -webkit-box-decoration-break: clone;
+          box-decoration-break: clone;
+}
+.hero-lead { font-size: 1.15rem; max-width: 36rem; margin-bottom: 1.5rem; }
+
+.nb-note {
+  display: inline-block;
+  padding: .8rem 1.1rem;
+  background: var(--accent-4);
+  color: #111;
+  font-weight: 700;
+  border: var(--border);
+  box-shadow: var(--shadow-sm);
+  transform: rotate(-1deg);
+  animation: muncul .25s ease-out;
+}
+@keyframes muncul { from { transform: scale(.8) rotate(-5deg); opacity: 0; } }
+
+.photo-wrap { position: relative; max-width: 420px; margin: 0 auto; }
+.photo {
+  display: block;
+  width: 100%;
+  background: var(--accent-2);
+  border: var(--border);
+  box-shadow: 12px 12px 0 var(--ink);
+}
+.sticker {
+  position: absolute;
+  padding: .35rem .8rem;
+  color: #111;
+  border: var(--border);
+  box-shadow: var(--shadow-sm);
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: .9rem;
+}
+.sticker-1 { top: -18px;    left: -22px;  background: var(--accent-1); transform: rotate(-8deg); }
+.sticker-2 { bottom: -16px; right: -14px; background: var(--accent-4); transform: rotate(5deg); }
+
+
+.section-title {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: .2rem 1rem;
+  background: var(--accent-3);
+  color: #111;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(1.7rem, 5vw, 3rem);
+  text-transform: uppercase;
+  border: var(--border);
+  box-shadow: var(--shadow);
+  transform: rotate(-1deg);
+}
+.section-title span {
+  margin-right: .6rem;
+  padding: 0 .5rem;
+  background: #111;
+  color: #fff;
+}
+
+
+.nb-card {
+  background: var(--paper);
+  color: var(--ink);
+  border: var(--border);
+  border-radius: 0;
+  box-shadow: var(--shadow);
+}
+.bg-card-yellow { background: var(--accent-1); color: #111; }
+.bg-card-blue   { background: var(--accent-3); color: #111; }
+.bg-card-green  { background: var(--accent-4); color: #111; }
+
+.data-diri div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .55rem 0;
+  border-bottom: 3px dashed #111;
+}
+.data-diri div:last-child { border-bottom: 0; }
+.data-diri dt {
+  font-family: 'Space Mono', monospace;
+  font-size: .85rem;
+  text-transform: uppercase;
+}
+.data-diri dd { margin: 0; font-weight: 800; text-align: right; }
+
+
+.band {
+  background: var(--accent-3);
+  color: #111;
+  border-block: var(--border);
+}
+.band .section-title { background: var(--paper); color: var(--ink); }
+.nb-progress {
+  height: 1.6rem;
+  background: var(--paper);
+  border: var(--border);
+  border-radius: 0;
+  box-shadow: var(--shadow-sm);
+}
+.nb-bar { border-right: var(--border); }
+.bar-yellow { background: var(--accent-1); }
+.bar-pink   { background: var(--accent-2); }
+.bar-green  { background: var(--accent-4); }
+.bar-white  { background: #fff; }
+
+
+.project { transition: transform .15s, box-shadow .15s; }
+.project:hover {
+  transform: translate(-4px, -4px) rotate(-.6deg);
+  box-shadow: 10px 10px 0 var(--ink);
+}
+.project-thumb {
+  padding: 1.5rem;
+  color: #111;
+  font-size: 3.5rem;
+  text-align: center;
+  border-bottom: var(--border);
+}
+.thumb-yellow { background: var(--accent-1); }
+.thumb-pink   { background: var(--accent-2); }
+.thumb-blue   { background: var(--accent-3); }
+.thumb-green  { background: var(--accent-4); }
+
+.project-title {
+  margin: .8rem 0 .4rem;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+.nb-badge {
+  background: var(--accent-3);
+  color: #111;
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  font-family: 'Space Mono', monospace;
+}
+.nb-link {
+  font-weight: 800;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-decoration-color: var(--accent-2);
+}
+.nb-link:hover { background: var(--accent-2); color: #111; }
+
+
+.band-alt { background: var(--accent-1); color: #111; border-top: var(--border); }
+.band-alt .section-title { background: var(--paper); color: var(--ink); }
+
+.form-label {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.nb-input {
+  background: var(--paper);
+  color: var(--ink);
+  border: var(--border);
+  border-radius: 0;
+  box-shadow: var(--shadow-sm);
+}
+.nb-input:focus {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--ink);
+  box-shadow: 6px 6px 0 var(--accent-2);
+}
+.nb-input::placeholder { color: var(--ink); opacity: .5; }
+.was-validated .nb-input:valid   { border-color: var(--ink); box-shadow: var(--shadow-sm); }
+.was-validated .nb-input:invalid { border-color: #E03131;   box-shadow: 4px 4px 0 #E03131; }
+.invalid-feedback { font-weight: 700; color: #FF4D4D; }
+.form-text { color: var(--ink); font-family: 'Space Mono', monospace; }
+
+.kontak-list li { margin-bottom: .8rem; font-weight: 700; }
+.kontak-list a  { color: #111; text-decoration-thickness: 3px; }
+.kontak-list a:hover { background: #111; color: #fff; }
+
+
+.nb-toast {
+  background: var(--accent-1);
+  color: #111;
+  border: var(--border);
+  border-radius: 0;
+  box-shadow: var(--shadow);
+}
+.nb-toast-header {
+  background: #111;
+  color: #fff;
+  border-bottom: var(--border);
+  border-radius: 0;
+}
+.nb-toast-header .btn-close { filter: invert(1); }
+.nb-toast .toast-body { font-weight: 600; }
+
+
+.nb-footer {
+  background: #111;
+  color: #fff;
+  border-top: var(--border);
+  font-family: 'Space Mono', monospace;
+  font-size: .9rem;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track, .nb-note { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ===== RESPONSIVE (MEDIA QUERY) ===== */
+/* [T9] TODO: tulis media query di bawah ini.
+   a) layar maksimal 991.98px  -> .hero-title font-size: 3.4rem
+   b) layar maksimal 575.98px  -> .hero-title font-size: 2.4rem
+                               -> .stiker-hp disembunyikan (display: none)
+   Petunjuk: @media (max-width: 991.98px) { ... }
+   Cek hasilnya lewat DevTools: F12 lalu Ctrl+Shift+M (mode perangkat mobile). */
+
+
+
+/* T9: Penyesuaian ukuran judul dan elemen pada layar kecil. */
+@media (max-width: 991.98px) {
+  .hero-title { font-size: 3.4rem; }
+}
+
+@media (max-width: 575.98px) {
+  .hero-title { font-size: 2.4rem; }
+  .stiker-hp { display: none; }
+}
